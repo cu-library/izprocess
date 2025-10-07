@@ -24,13 +24,13 @@ def main():
         if row["Action"] == "match":
             if row["Existing 035a"] != row["Incoming 035a"]:
                 MMSIds = MMSIds + f'{str(row["Network Id"])}\n'
-                recordstoupdate = recordstoupdate + f'{str(row["Network Id"])},{str(row["Incoming 035a"]).rstrip('.0')}\n'
+                recordstoupdate = recordstoupdate + f'{str(row["Network Id"])},(OCoLC){str(row["Incoming 035a"]).rstrip('.0')}\n'
                 print(recordstoupdate)
                 print("Updated OCLC # found. Writing to outputs.")
         #For new records
         elif row["Action"] == "create":
             if row["Existing 035a"] == "":
-                recordstoupdate = recordstoupdate + f'{str(row["Network Id"])},{str(row["Incoming 035a"]).rstrip('.0')}\n'
+                recordstoupdate = recordstoupdate + f'{str(row["Network Id"])},(OCoLC){str(row["Incoming 035a"]).rstrip('.0')}\n'
                 print("New record found. Writing to outputs.")
         #All other records
         else:
